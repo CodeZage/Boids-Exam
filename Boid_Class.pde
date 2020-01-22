@@ -164,6 +164,7 @@ class Boid
             float distance = PVector.dist(this.position, obstacle.position);
             if (distance < hitRadius)
             {
+                hit.play();
                 PVector bounce = PVector.sub(this.position, obstacle.position);
                 bounce.setMag(10);
                 steering.add(bounce);

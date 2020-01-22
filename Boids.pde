@@ -1,9 +1,13 @@
 //Original idea created by Craig Reynolds
 //Inspiration for this implementation: Daniel Shiffmann, youtube user: mick maus, youtube user: Sebastian Lague
 
+import processing.sound.*; //Imports sound library
+
 //Designates an array list to contain all instances of the classes 
 ArrayList<Boid> flock;
 ArrayList<Obstacle> obstacleList; 
+
+
 
 PVector mouseVector;
 
@@ -18,7 +22,10 @@ float cohesionRadius = 100;
 float alignmentRadius = 85;
 float seperationRadius = 75;
 float obstacleRadius = 150;
-float hitRadius = 20;
+
+float hitRadius = 20; //If a boid comes in contact with an Obstacle it will be pushed back
+
+SoundFile hit;
 
 //Max boid movespeed
 float velocityLimit = 2;
@@ -27,6 +34,8 @@ void setup()
 {
     size(1920, 1080, P2D);
     smooth(8);
+
+    hit = new SoundFile(this, "hit.wav");
 
     flock = new ArrayList<Boid>();
     obstacleList = new ArrayList<Obstacle>();
@@ -60,7 +69,7 @@ void setup()
 void draw() 
 {   
     mouseVector = new PVector(mouseX, mouseY);
-    
+
     background(#454359);
 
     for (int i = 0; i < flock.size(); i++) 

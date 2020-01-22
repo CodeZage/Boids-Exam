@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import processing.sound.*; 
+
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import java.io.File; 
@@ -16,6 +18,8 @@ public class Boids extends PApplet {
 
 //Original idea created by Craig Reynolds
 //Inspiration for this implementation: Daniel Shiffmann, youtube user: mick maus, youtube user: Sebastian Lague
+
+ //Imports sound library
 
 //Designates an array list to contain all instances of the classes 
 ArrayList<Boid> flock;
@@ -34,7 +38,10 @@ float cohesionRadius = 100;
 float alignmentRadius = 85;
 float seperationRadius = 75;
 float obstacleRadius = 150;
-float hitRadius = 20;
+
+float hitRadius = 20; //If a boid comes in contact with an Obstacle it will be pushed back
+
+SoundFile hit;
 
 //Max boid movespeed
 float velocityLimit = 2;
@@ -43,6 +50,8 @@ public void setup()
 {
     
     
+
+    hit = new SoundFile(this, "hit.wav");
 
     flock = new ArrayList<Boid>();
     obstacleList = new ArrayList<Obstacle>();
@@ -76,7 +85,7 @@ public void setup()
 public void draw() 
 {   
     mouseVector = new PVector(mouseX, mouseY);
-    
+
     background(0xff454359);
 
     for (int i = 0; i < flock.size(); i++) 
@@ -325,6 +334,7 @@ class Boid
             float distance = PVector.dist(this.position, obstacle.position);
             if (distance < hitRadius)
             {
+                hit.play();
                 PVector bounce = PVector.sub(this.position, obstacle.position);
                 bounce.setMag(10);
                 steering.add(bounce);
