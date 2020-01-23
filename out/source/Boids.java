@@ -25,6 +25,8 @@ public class Boids extends PApplet {
 ArrayList<Boid> flock;
 ArrayList<Obstacle> obstacleList; 
 
+
+
 PVector mouseVector;
 
 boolean boidTool = true; //True = Boid tool | False = obstacle tool 
@@ -58,7 +60,7 @@ public void setup()
 
     for (int i = 0; i < initialBoids; i++) 
     {
-        flock.add(new Boid(random(0, width), random(0, height)));
+        flock.add(new Boid(random(60, width - 60), random(60, height - 60)));
     }
     
     for (int i = 0; i < width; i += 10) 
@@ -196,14 +198,6 @@ class Boid
     //Draws the boid with it's current position to the screen
     public void drawBoid() 
     {   
-        // noStroke();
-        // fill(255);  
-        // ellipse(position.x, position.y, 20, 20);
-        
-        // stroke(0);
-        // strokeWeight(2);
-        // line(position.x, position.y, position.x + velocity.x * directionIndicatorLenght, position.y + velocity.y * directionIndicatorLenght);
-
         //Draws the boids as arrows with a color 
         pushMatrix(); 
         
@@ -236,7 +230,6 @@ class Boid
         PVector cohesion = getCohesion();
         PVector obstacleAvoidance = avoidObstacles();
         PVector obstacleHit = hitObstacle();
-
         col = getColor();
 
         acceleration.set(0, 0);
@@ -252,7 +245,7 @@ class Boid
         position.add(velocity);
     }
 
-    //Moves boids to opposite side of screen if the escape the boundaries
+    //Moves boids to opposite side of screen if they escape the boundaries
     public void edges() 
     {
         if (position.x > width) 

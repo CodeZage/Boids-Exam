@@ -26,14 +26,6 @@ class Boid
     //Draws the boid with it's current position to the screen
     void drawBoid() 
     {   
-        // noStroke();
-        // fill(255);  
-        // ellipse(position.x, position.y, 20, 20);
-        
-        // stroke(0);
-        // strokeWeight(2);
-        // line(position.x, position.y, position.x + velocity.x * directionIndicatorLenght, position.y + velocity.y * directionIndicatorLenght);
-
         //Draws the boids as arrows with a color 
         pushMatrix(); 
         
@@ -66,7 +58,6 @@ class Boid
         PVector cohesion = getCohesion();
         PVector obstacleAvoidance = avoidObstacles();
         PVector obstacleHit = hitObstacle();
-
         col = getColor();
 
         acceleration.set(0, 0);
@@ -82,7 +73,7 @@ class Boid
         position.add(velocity);
     }
 
-    //Moves boids to opposite side of screen if the escape the boundaries
+    //Moves boids to opposite side of screen if they escape the boundaries
     void edges() 
     {
         if (position.x > width) 

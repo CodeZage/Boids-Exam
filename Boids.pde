@@ -42,7 +42,7 @@ void setup()
 
     for (int i = 0; i < initialBoids; i++) 
     {
-        flock.add(new Boid(random(0, width), random(0, height)));
+        flock.add(new Boid(random(60, width - 60), random(60, height - 60)));
     }
     
     for (int i = 0; i < width; i += 10) 
