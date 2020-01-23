@@ -26,10 +26,10 @@ ArrayList<Boid> flock;
 ArrayList<Obstacle> obstacleList; 
 
 
-
 PVector mouseVector;
 
 boolean boidTool = true; //True = Boid tool | False = obstacle tool 
+
 
 int initialBoids = 300; //Determines number of boids created at startup
 int flockLimit = 500; //Determines max number of boids
@@ -63,11 +63,12 @@ public void setup()
         flock.add(new Boid(random(60, width - 60), random(60, height - 60)));
     }
     
+    //Drawborders
     for (int i = 0; i < width; i += 10) 
     {
         obstacleList.add(new Obstacle(0 + i, 0));
     }
-    
+
     for (int i = 0; i < height; i += 10) 
     {
         obstacleList.add(new Obstacle(0, 0 + i));
@@ -82,6 +83,7 @@ public void setup()
     {
         obstacleList.add(new Obstacle(width - 10, 0 + i));
     }
+    
 }
 
 public void draw() 
@@ -97,7 +99,7 @@ public void draw()
         initial.edges();
         initial.update();
     }
-    
+
     for (int i = 0; i < obstacleList.size(); i++)
     {   
         Obstacle initial = obstacleList.get(i);
@@ -170,6 +172,7 @@ public void createObstacle()
     obstacleList.add(new Obstacle(mouseX, mouseY));
     rectMode(CORNER);
 }
+
 class Boid 
 {
     PVector position;
@@ -230,6 +233,7 @@ class Boid
         PVector cohesion = getCohesion();
         PVector obstacleAvoidance = avoidObstacles();
         PVector obstacleHit = hitObstacle();
+
         col = getColor();
 
         acceleration.set(0, 0);
@@ -237,7 +241,7 @@ class Boid
         acceleration.add(seperation);
         acceleration.add(cohesion);
         acceleration.add(obstacleAvoidance);
-        
+
         velocity.add(acceleration);
         velocity.limit(velocityLimit);
         velocity.add(obstacleHit);
@@ -424,7 +428,7 @@ class Boid
 class Obstacle 
 {   
     PVector position;
-
+    boolean isActive;    
     int col; 
 
     Obstacle (float x, float y)
@@ -433,12 +437,16 @@ class Obstacle
         col = color(0xffbf0a22);
         position.x = x;
         position.y = y;
+        isActive = true;
     }
 
     public void drawObstacle()
     {   
-        fill(col);
-        rect(position.x, position.y, 10, 10);
+        if (isActive == true) 
+        {
+            fill(col);
+            rect(position.x, position.y, 10, 10);
+        }    
     }
 }
   public void settings() {  size(1920, 1080, P2D);  smooth(8); }

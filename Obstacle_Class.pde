@@ -1,7 +1,7 @@
 class Obstacle 
 {   
     PVector position;
-
+    boolean isActive;    
     color col; 
 
     Obstacle (float x, float y)
@@ -10,11 +10,15 @@ class Obstacle
         col = color(#bf0a22);
         position.x = x;
         position.y = y;
+        isActive = true;
     }
 
     void drawObstacle()
     {   
-        fill(col);
-        rect(position.x, position.y, 10, 10);
+        if (isActive == true) 
+        {
+            fill(col);
+            rect(position.x, position.y, 10, 10);
+        }    
     }
 }

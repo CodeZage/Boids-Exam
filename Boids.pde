@@ -8,10 +8,10 @@ ArrayList<Boid> flock;
 ArrayList<Obstacle> obstacleList; 
 
 
-
 PVector mouseVector;
 
 boolean boidTool = true; //True = Boid tool | False = obstacle tool 
+
 
 int initialBoids = 300; //Determines number of boids created at startup
 int flockLimit = 500; //Determines max number of boids
@@ -45,11 +45,12 @@ void setup()
         flock.add(new Boid(random(60, width - 60), random(60, height - 60)));
     }
     
+    //Drawborders
     for (int i = 0; i < width; i += 10) 
     {
         obstacleList.add(new Obstacle(0 + i, 0));
     }
-    
+
     for (int i = 0; i < height; i += 10) 
     {
         obstacleList.add(new Obstacle(0, 0 + i));
@@ -64,6 +65,7 @@ void setup()
     {
         obstacleList.add(new Obstacle(width - 10, 0 + i));
     }
+    
 }
 
 void draw() 
@@ -79,7 +81,7 @@ void draw()
         initial.edges();
         initial.update();
     }
-    
+
     for (int i = 0; i < obstacleList.size(); i++)
     {   
         Obstacle initial = obstacleList.get(i);
@@ -152,3 +154,4 @@ void createObstacle()
     obstacleList.add(new Obstacle(mouseX, mouseY));
     rectMode(CORNER);
 }
+
