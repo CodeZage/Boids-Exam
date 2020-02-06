@@ -64,25 +64,25 @@ public void setup()
     }
     
     //Drawborders
-    for (int i = 0; i < width; i += 10) 
-    {
-        obstacleList.add(new Obstacle(0 + i, 0));
-    }
+    // for (int i = 0; i < width; i += 10) 
+    // {
+    //     obstacleList.add(new Obstacle(0 + i, 0));
+    // }
 
-    for (int i = 0; i < height; i += 10) 
-    {
-        obstacleList.add(new Obstacle(0, 0 + i));
-    }
+    // for (int i = 0; i < height; i += 10) 
+    // {
+    //     obstacleList.add(new Obstacle(0, 0 + i));
+    // }
 
-    for (int i = 0; i < width; i += 10) 
-    {
-        obstacleList.add(new Obstacle(0 + i, height - 10));
-    }
+    // for (int i = 0; i < width; i += 10) 
+    // {
+    //     obstacleList.add(new Obstacle(0 + i, height - 10));
+    // }
 
-    for (int i = 0; i < height; i += 10) 
-    {
-        obstacleList.add(new Obstacle(width - 10, 0 + i));
-    }
+    // for (int i = 0; i < height; i += 10) 
+    // {
+    //     obstacleList.add(new Obstacle(width - 10, 0 + i));
+    // }
     
 }
 
